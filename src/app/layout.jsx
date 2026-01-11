@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
-        <title>Город Андижан - Школа №56 Официальный сайт</title>
+        <title>XOXO English</title>
         <meta
           name="description"
           content="Официальный сайт школы №56 в городе Андижан. Узнайте о нашей школе, курсах, преподавателях и событиях."

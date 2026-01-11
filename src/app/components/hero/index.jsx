@@ -1,19 +1,44 @@
-import Carousel from '../carousel'
-import '../../styles/style.css'
-const Hero = () => {
+import Image from "next/image";
+import Link from "next/link";
+import HeroImage from "../../../../public/images/photo.jpg"
+
+export default function Hero() {
   return (
-    <section className="pt-[10px] p-2">
-        <div className="container grid grid-cols-1 gap-2 md:grid-cols-2 items-center lg:gap-4 xl:gap-8">
-          <Carousel/>
-            <div className="mt-4 sm:mt-0 flex flex-col gap-2 order-2 sm:order-1">
-             <h1 className='text-[20px] sm:text-[24px] md:text-[26px] lg:text-[28px] xl:text-[30px]'>Андижанская городская Школа 56</h1>   
-            <p className='text-[15px] sm:text-[16px] xl:text-[20px]'>Общеобразовательное учреждение, расположенное в городе Андижан Андижанской области, и является школой государственной собственности. В этой школе учатся ученики начальной, средней и старшей школы. Опытные педагоги работают для того, чтобы организовать учебный процесс на высоком уровне.
+    <section className="w-ful">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-10">
+          
+          {/* LEFT - TEXT */}
+          <div className="w-full md:w-1/2 text-center md:text-left">
+            <h1 className="text-[25px] md:text-5xl font-bold text-white leading-tight">
+              English with XOXO, Asadulla
+            </h1>
 
-Школа обеспечивает образование на основе современных учебных программ и передает учащимся образовательные навыки наряду с научными знаниями. Также на территории школы проводятся различные кружки, спортивные и культурные мероприятия.</p>
+            <p className="mt-4 text-gray-600 text-base md:text-lg">
+              Let’s unlock your potential together! 
+            </p>
+
+            <div className="mt-6 flex justify-center md:justify-start gap-4">
+              <Link href={'/'} className="px-3 py-2 md:px-4 md:py-4 bg-blue-600 text-white rounded-lg text-[14px] lg:text-[16px] hover:bg-blue-700 transition">
+                Learn from a teacher with 10+ years of experience
+              </Link>
             </div>
-        </div>
-    </section>
-  )
-}
+          </div>
 
-export default Hero
+          <div className="w-full md:w-1/2 flex justify-center">
+            <div className="relative w-full h-[450px] md:h-[500px]">
+              <Image
+                src={HeroImage}   
+                alt="O'quv markaz"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

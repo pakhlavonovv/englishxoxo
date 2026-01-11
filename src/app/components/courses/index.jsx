@@ -1,70 +1,57 @@
-"use client";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../../firebase.config";
 import Image from "next/image";
+const levels = [
+  {
+    title: "Pre-Intermediate",
+    image: "/images/pre-intermediate.jpg",
+  },
+  {
+    title: "Intermediate",
+    image: "/images/intermediate.jpg",
+  },
+  {
+    title: "IELTS",
+    image: "/images/photo.jpg",
+  },
+  {
+    title: "IELTS PRO",
+    image: "/images/advanced.jpg",
+  },
+];
 
-const Courses = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "courses"));
-        const postsArray = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setPosts(postsArray);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
+export default function CourseCards() {
   return (
-    <section className="w-[100%] mx-auto p-4 sm:p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">Курсы</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 sm:gap-2 md:gap-3 lg:gap-4">
-        {posts.length > 0 ? (
-          posts.map((post) => {
-            return (
-              <div
-              key={post.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-between cursor-pointer h-full transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg"
-            >
-              {post.imageUrl && (
-                <Image
-                priority
-                  width={600}
-                  height={400}
-                  src={post.imageUrl}
-                  alt={post.courseName}
-                  className="w-full h-48 object-cover"
-                />
-              )}
-              
-              <div className="p-4 flex flex-col flex-grow gap-1">
-                <h3 className="text-lg font-semibold">{post.courseName}</h3>
-                <h1 className="text-lg font-semibold text-blue-600">{post.startTime} - {post.endTime}</h1>
-                <p className="text-gray-600 text-sm">{post.teacherName}</p>
-                <p className="text-gray-600 text-sm">{post.description}</p>
-                <h1 className="text-lg font-semibold text-blue-600">{post.price} 000 UZS</h1>
-              </div>
+    <section className="max-w-7xl mx-auto px-4 py-16">
+      <h2 className="text-3xl text-white font-bold text-center mb-12">
+        Available courses
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {levels.map((level, index) => (
+          <div
+            key={index}
+            className="group relative h-72 rounded-2xl overflow-hidden cursor-pointer"
+          >
+            <Image
+              src={level.image}
+              alt={level.title}
+              fill
+              className="object-cover transition duration-500 group-hover:blur-sm scale-105"
+            />
+
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition" />
+
+            <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 text-white">
+              <h3 className="text-2xl font-bold mb-4">
+                {level.title}
+              </h3>
+
+              <button className="px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                Register
+              </button>
             </div>
-            
-            );
-          })
-        ) : (
-          <p className="text-center text-[16px] sm:text-[20px] text-gray-500">
-            - Курсы пока не открылись
-          </p>
-        )}
+          </div>
+        ))}
       </div>
     </section>
   );
-};
-
-export default Courses;
+}

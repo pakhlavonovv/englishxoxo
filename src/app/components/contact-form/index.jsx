@@ -26,11 +26,11 @@ const ContactForm = () => {
 
     const message = `📩 *Новое сообщение!*
 
-👤 *Имя:* ${formData.name}
+👤 *Name:* ${formData.name}
 📧 *Email:* ${formData.email}
-📞 *Телефон:* ${formData.phone}
-👉 *Тема:* ${formData.theme}
-📝 *Сообщение:* ${formData.message}`;
+📞 *Phone:* ${formData.phone}
+👉 *Theme:* ${formData.theme}
+📝 *Message:* ${formData.message}`;
 
     try {
       const response = await fetch(API_URL, {
@@ -54,12 +54,12 @@ const ContactForm = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-4">Свяжитесь с нами</h2>
+      <h2 className="text-[25px] font-bold text-center mb-4">Contact</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           name="name"
-          placeholder="Ваше имя"
+          placeholder="Name"
           value={formData.name}
           onChange={handleChange}
           required
@@ -68,7 +68,7 @@ const ContactForm = () => {
         <input
           type="email"
           name="email"
-          placeholder="Ваш email"
+          placeholder="Email"
           value={formData.email}
           onChange={handleChange}
           required
@@ -77,7 +77,7 @@ const ContactForm = () => {
         <input
           type="tel"
           name="phone"
-          placeholder="Ваш телефон"
+          placeholder="Phone number"
           value={formData.phone}
           onChange={handleChange}
           required
@@ -86,7 +86,7 @@ const ContactForm = () => {
         <input
           type="text"
           name="theme"
-          placeholder="Тема сообщения"
+          placeholder="Theme"
           value={formData.theme}
           onChange={handleChange}
           required
@@ -94,7 +94,7 @@ const ContactForm = () => {
         />
         <textarea
           name="message"
-          placeholder="Ваше сообщение"
+          placeholder="Message"
           value={formData.message}
           onChange={handleChange}
           required
@@ -106,20 +106,20 @@ const ContactForm = () => {
           className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
           disabled={loading}
         >
-          {loading ? "Отправляется..." : "Отправить"}
+          {loading ? "Sending..." : "Send"}
         </button>
       </form>
 
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center  w-[80%] sm:w-[70%] md:w-[40%] lg:w-[30%] xl:w-[25%]">
-            <h3 className="text-xl font-bold mb-2">Сообщение отправлено!</h3>
+            <h3 className="text-xl font-bold mb-2">Message sent!</h3>
             <p className="text-gray-600">Мы свяжемся с вами в ближайшее время.</p>
             <button
               onClick={() => setModalOpen(false)}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
             >
-              Спасибо, Понятно
+              Thanks
             </button>
           </div>
         </div>
